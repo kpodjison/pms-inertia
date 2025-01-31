@@ -15,4 +15,8 @@ class Notice extends Model
         'property_id',
     ];
 
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
+
 }

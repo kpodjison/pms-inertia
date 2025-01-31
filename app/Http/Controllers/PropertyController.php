@@ -79,6 +79,12 @@ class PropertyController extends Controller
         }
         return response()->json(['data' => $properties]);
     }
+    
+    public function notifications()
+    {
+            $properties = Property::with(['images','notices'])->orderBy('id', 'desc')->get();
+       return response()->json(['data' => $properties]);
+    }
 
     public function indexProperty()
     {

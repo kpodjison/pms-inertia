@@ -13,12 +13,12 @@ export const sidebarLinks = [
         route: "/admin/dashboard/properties",
         label: "Properties",
     },
-    {
-        imgURL: "/storage/icons/dollar-circle.svg",
-        imgUrlActive: "/storage/icons/dollar-circle-active.svg",
-        route: "/admin/dashboard/transactions",
-        label: "Transactions",
-    },
+    // {
+    //     imgURL: "/storage/icons/dollar-circle.svg",
+    //     imgUrlActive: "/storage/icons/dollar-circle-active.svg",
+    //     route: "/admin/dashboard/transactions",
+    //     label: "Transactions",
+    // },
     {
         imgURL: "/storage/icons/dollar-circle.svg",
         imgUrlActive: "/storage/icons/dollar-circle-active.svg",

@@ -31,4 +31,7 @@ class Property extends Model
     public function images(){
       return $this->hasMany(PropertyImage::class);
     }
+    public function notices(){
+      return $this->hasMany(Notice::class);
+    }
 }

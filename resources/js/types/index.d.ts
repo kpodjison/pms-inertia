@@ -173,4 +173,15 @@ export interface IProperty {
     images: IImage[];
 }
 
+export interface INotification{
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  property_id: number;
+  created_at: string;
+  updated_at: string;
+  property: IProperty;
+}
+
 

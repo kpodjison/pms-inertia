@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyImageController;
 
@@ -24,6 +25,7 @@ use App\Http\Controllers\PropertyImageController;
 Route::middleware('auth')->group(function () {
     
  Route::prefix('admin/dashboard')->group(function (){
+
         Route::get('/',function (){   
             return Inertia::render('Admin/Admin');
         });
@@ -41,10 +43,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/transactions',[PropertyController::class,'index']);
         Route::post('/property/update/',[PropertyController::class,'update']);
         Route::post('/property/publish/{id}',[PropertyController::class,'publish']);
+        // Route::get('/property-notifications', [PropertyController::class, 'notifications']);
+
         
         
         // Route::get('/notification',[NoticeController::class,'index']);
         Route::post('/property-image/delete',[PropertyImageController::class,'delete']);
+
+        Route::get('/notifications', [NoticeController::class, 'index']);
+
 
 
 
