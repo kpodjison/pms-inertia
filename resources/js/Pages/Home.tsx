@@ -56,108 +56,23 @@ export default function RootLayout({
                         <h3 className="text-xl font-bold">Need a tour?</h3>
                         <p>Our experts are ready to assist you</p>
                         <div className="grid  grid-cols-1 sm:grid-cols-2 gap-5 w-[80%] mx-auto my-10">
-                            <div className="flex flex-col gap-5">
-                                <div className="flex gap-3">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-                                        />
-                                    </svg>
-                                    <div>
-                                        <h6>title</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-3">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-                                        />
-                                    </svg>
-                                    <div>
-                                        <h6>title</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-3">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-                                        />
-                                    </svg>
-                                    <div>
-                                        <h6>title</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-3">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke-width="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-                                        />
-                                    </svg>
-                                    <div>
-                                        <h6>title</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
-                                        </p>
-                                    </div>
-                                </div>
+                            <div>
+                                <img
+                                    src="/storage/inspection_1.jpg"
+                                    className="image-fit"
+                                />
                             </div>
-                            <div className="" id="tour_section">
-                                <div className="showcase"></div>
-                                <div className="top-box top-box-a"></div>
-                                <div className="top-box top-box-b"></div>
+                            <div className="flex justify-center items-center text-center">
+                                <p>
+                                    Our experts are ready to assist you with all
+                                    your real estate needs! Whether you're
+                                    looking to buy or rent, our dedicated team
+                                    is here to help you find the perfect
+                                    property. With expert market knowledge and
+                                    personalized service, we make the process
+                                    seamless and stress-free. Contact us today
+                                    and let us help you find your next home!
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -171,7 +86,7 @@ export default function RootLayout({
                             <div className="flex flex-col gap-5">
                                 <div className="flex gap-3">
                                     <img
-                                        src="./banner_img.jpg"
+                                        src="/storage/banner_img.jpg"
                                         className="rounded-full w-16 h-16"
                                     />
 
@@ -188,7 +103,7 @@ export default function RootLayout({
                             <div className="flex flex-col gap-5">
                                 <div className="flex gap-3">
                                     <img
-                                        src="./banner_img.jpg"
+                                        src="/storage/banner_img.jpg"
                                         className="rounded-full w-16 h-16"
                                     />
 
@@ -205,7 +120,7 @@ export default function RootLayout({
                             <div className="flex flex-col gap-5">
                                 <div className="flex gap-3">
                                     <img
-                                        src="./banner_img.jpg"
+                                        src="/storage/banner_img.jpg"
                                         className="rounded-full w-16 h-16"
                                     />
 
@@ -222,7 +137,7 @@ export default function RootLayout({
                             <div className="flex flex-col gap-5">
                                 <div className="flex gap-3">
                                     <img
-                                        src="/banner_img.jpg"
+                                        src="/storage/banner_img.jpg"
                                         className="rounded-full w-16 h-16"
                                     />
 
