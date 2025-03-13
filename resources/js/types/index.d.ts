@@ -177,6 +177,7 @@ export interface INotification{
   id: number;
   name: string;
   email: string;
+  message: string;
   phone: string;
   property_id: number;
   created_at: string;

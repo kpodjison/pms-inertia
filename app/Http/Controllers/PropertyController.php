@@ -17,7 +17,7 @@ class PropertyController extends Controller
     {
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'price'       => 'required|numeric|min:0',
             'type'        => 'required|string|max:50',
             'street'      => 'required|string|max:255',
@@ -79,11 +79,11 @@ class PropertyController extends Controller
         }
         return response()->json(['data' => $properties]);
     }
-    
+
     public function notifications()
     {
-            $properties = Property::with(['images','notices'])->orderBy('id', 'desc')->get();
-       return response()->json(['data' => $properties]);
+        $properties = Property::with(['images', 'notices'])->orderBy('id', 'desc')->get();
+        return response()->json(['data' => $properties]);
     }
 
     public function indexProperty()
@@ -109,7 +109,12 @@ class PropertyController extends Controller
 
     public function indexShow($id)
     {
-        $property = Property::where('id', '=', $id)->with('images')->first();
+        if (Auth::user()) {
+
+            $property = Property::where('id', '=', $id)->with('images')->first();
+        } else {
+            $property = Property::where('id', '=', $id)->where('is_visible', '=', 1)->with('images')->first();
+        }
         if (! $property) {
             return redirect('/');
         }
@@ -198,9 +203,10 @@ class PropertyController extends Controller
     public function enquire(Request $request)
     {
         $validated = $request->validate([
-            'id'    => 'required|exists:properties,id',
-            'email' => 'required|email',
-            'phone' => 'required|string|min:10|max:14',
+            'id'      => 'required|exists:properties,id',
+            'email'   => 'required|email',
+            'phone'   => 'required|string|min:10|max:14',
+            'message' => 'required|string|min:10|max:400',
         ]);
 
         try {
@@ -208,6 +214,7 @@ class PropertyController extends Controller
                 'name'        => $request->name,
                 'email'       => $request->email,
                 'phone'       => $request->phone,
+                'message'     => $request->message,
                 'property_id' => $request->id,
             ]);
             return response()->json(['message' => "Your details have been received successfully. Our team will get in touch soon."]);
@@ -215,7 +222,7 @@ class PropertyController extends Controller
         } catch (\Exception $e) {
 
             // return response()->json(['message' => $e]);
-            return response()->json(['message' => "Failed to submit details!"],500);
+            return response()->json(['message' => "Failed to submit details!"], 500);
 
         }
 

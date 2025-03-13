@@ -21,6 +21,7 @@ interface FormData {
     id: number | null;
     name: string;
     email: string;
+    message: string;
     phone: string;
 }
 const SingleProperty = ({ property }: ISinglePropertyProps) => {
@@ -28,6 +29,7 @@ const SingleProperty = ({ property }: ISinglePropertyProps) => {
         id: null,
         name: "",
         email: "",
+        message: "",
         phone: "",
     });
 
@@ -35,6 +37,7 @@ const SingleProperty = ({ property }: ISinglePropertyProps) => {
         id: null,
         name: "",
         email: "",
+        message: "",
         phone: "",
     });
 
@@ -271,6 +274,23 @@ const SingleProperty = ({ property }: ISinglePropertyProps) => {
                                     />
                                     <InputError
                                         message={errors.phone}
+                                        className="mt-2"
+                                    />
+
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        placeholder="Your message "
+                                        onChange={(e) =>
+                                            setData({
+                                                ...data,
+                                                ["message"]: e.target.value,
+                                            })
+                                        }
+                                        className="shadow bg-white border w-full py-2 px-3 text-black placeholder-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    />
+                                    <InputError
+                                        message={errors.message}
                                         className="mt-2"
                                     />
                                     <button

@@ -23,11 +23,11 @@ const SideBar = () => {
         <section className="sidebar z-20">
             <nav className="flex flex-col gap-4">
                 <Link
-                    href="/admin"
+                    href="/admin/dashboard"
                     className="mb-1 flex cursor-pointer items-center gap-1"
                 >
                     <img
-                        src="/storage/log-png.png"
+                        src="/storage/logo.jpg"
                         width={50}
                         height={50}
                         className="rounded"

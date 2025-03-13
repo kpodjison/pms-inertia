@@ -12,6 +12,7 @@ class Notice extends Model
         'name',
         'email',
         'phone',
+        'message',
         'property_id',
     ];
 

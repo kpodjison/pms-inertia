@@ -66,6 +66,7 @@ export function NotificationTable() {
                         <TableHead className="tableHeader">Name</TableHead>
                         <TableHead className="tableHeader">Email</TableHead>
                         <TableHead className="tableHeader">Phone</TableHead>
+                        <TableHead className="tableHeader">Message</TableHead>
                         <TableHead className="text-right tableHeader">
                             Action
                         </TableHead>
@@ -89,6 +90,7 @@ export function NotificationTable() {
                             <TableCell>{notice.name}</TableCell>
                             <TableCell>{notice.email}</TableCell>
                             <TableCell>{notice.phone}</TableCell>
+                            <TableCell>{notice.message}</TableCell>
 
                             <TableCell className="grid grid-cols-1  space-x-2 space-y-2  w-[150px] bg-gray-200 table_actions float-end">
                                 <a
