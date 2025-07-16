@@ -1,5 +1,10 @@
 import BookingProcessCard from "./BookingProcessCard";
-
+import { PiBuildingApartment } from "react-icons/pi";
+import { FaRegHandshake } from "react-icons/fa";
+import { MdOutlinePageview } from "react-icons/md";
+import { IoDocumentsOutline } from "react-icons/io5";
+import { BsFillAwardFill } from "react-icons/bs";
+import { GiHouseKeys } from "react-icons/gi";
 export default function BookingProcess() {
   return (
       <div className="w-[80%] mx-auto my-16">
@@ -11,32 +16,33 @@ export default function BookingProcess() {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                   <BookingProcessCard
                       title="Find real estate"
-                      description="lorem ipsums lo reo jisdj "
-                      icon="realestate.svg"
+                      description="Browse properties that match your needs."
+                      icon={<MdOutlinePageview size={45} />}
                   />
                   <BookingProcessCard
                       title="Meet realtor"
-                      description="lorem ipsums lo reo jisdj "
-                      icon="meet.svg"
+                      description="Connect with a trusted real estate agent."
+                      icon={<FaRegHandshake size={45} />}
                   />
                   <BookingProcessCard
                       title="View & Inspection"
-                      description="lorem ipsums lo reo jisdj "
+                      description="Visit and inspect the shortlisted properties."
+                      icon={<PiBuildingApartment size={45} />}
                   />
                   <BookingProcessCard
                       title="Documentation"
-                      description="lorem ipsums lo reo jisdj "
-                      icon="document.svg"
+                      description="Prepare and review all paperwork."
+                      icon={<IoDocumentsOutline size={45} />}
                   />
                   <BookingProcessCard
                       title="Aggreement"
-                      description="lorem ipsums lo reo jisdj "
-                      icon="aggreement.svg"
+                      description="Sign the final purchase agreement."
+                      icon={<BsFillAwardFill size={45} />}
                   />
                   <BookingProcessCard
                       title="Take the keys"
-                      description="lorem ipsums lo reo jisdj "
-                      icon="keys.svg"
+                      description="Receive keys and move in!"
+                      icon={<GiHouseKeys size={45} />}
                   />
               </div>
           </div>

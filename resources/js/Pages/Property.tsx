@@ -6,62 +6,99 @@ import TopBanner from "@/Components/TopBanner";
 import { Pagination } from "@/Components/ui/pagination";
 import { ScrollArea } from "@/Components/ui/scroll-area";
 import { apartments } from "@/constants";
-import { IProperty } from "@/types";
+import { IProperty, IPropertySearchFormData } from "@/types";
+import { router, useForm, usePage } from "@inertiajs/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { toast } from "sonner";
 
-
-interface IPropertyProps{
-    properties:IProperty[]
+interface IPropertyProps {
+    properties: IProperty[];
 }
-export default function Property({
-    properties,
-}:IPropertyProps) {
-    // const [properties, setProperties] = useState<IProperty[]>([]);
-    // useEffect(() => {
-    //     axios
-    //         .get("/admin/dashboard/property")
-    //         .then((res) => {
-    //             console.log(res.data.data);
-    //             setProperties(res.data.data);
-    //         })
-    //         .catch((error) => {
-    //             //   console.log("Error", error);
-    //         });
-    // }, []);
+export default function Property({ properties }: IPropertyProps) {
+    const { data, setData, post, processing, errors, reset } =
+        useForm<IPropertySearchFormData>({
+            category: "",
+            location: "",
+        });
+    const [locations, setLocations] = useState<string[]>([]);
+    const { url } = usePage(); 
+    const query = new URLSearchParams(url.split("?")[1] || "");
+
+    const category = query.get("category") || "All";
+    const location = query.get("location") || "Anywhere";
+
+
+    useEffect(() => {
+        axios
+            .get(`/get-property-locations`)
+            .then((res) => {
+                setLocations(res?.data?.data);
+            })
+            .catch((error) => {
+                console.log("failed to get locations");
+            });
+    }, []);
+
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    const submit = (e: FormEvent) => {
+        e.preventDefault();
+        console.log(data);
+
+        if (!data?.location) {
+            toast.error("Select a location");
+            return;
+        }
+
+        router.visit(
+            `/property?category=${data?.category}&location=${data?.location}`
+        );
+    };
     return (
         <GuestWrapper>
-            <div className="mb-28">
-                <ScrollArea className="w-[90%] mx-auto my-10 h-screen">
+            <div className="mb-28 w-[90%] 2xl:w-[80%] mx-auto ">
+                <ScrollArea className="my-10 h-screen">
                     <div className="grid  grid-cols-1 sm:grid-cols-3 gap-5">
                         <div className="bg-gray-200 col-span-1 rounded h-fit">
-                            <form className="px-8 py-6 mb-4 space-y-4">
+                            <form
+                                className="px-8 py-6 mb-4 space-y-4"
+                                onSubmit={submit}
+                            >
                                 <div className="">
                                     <select
                                         name="category"
                                         id="category"
-                                        className="shadow bg-white border w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow bg-white border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        onChange={handleChange}
                                     >
-                                        <option value="1">
-                                            -- select a category --
+                                        <option value="">
+                                            select a category
                                         </option>
-                                        <option value="1">Rent</option>
-                                        <option value="1">Buy</option>
+                                        <option value="rent">Rent</option>
+                                        <option value="sale">Sale</option>
                                     </select>
                                 </div>
                                 <div className="">
                                     <select
                                         name="location"
                                         id="location"
-                                        className="shadow bg-white border w-full  p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow bg-white border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        onChange={handleChange}
                                     >
                                         <option value="1">
-                                            -- select a location --
+                                            select a location
                                         </option>
-                                        <option value="1">Loc 1</option>
-                                        <option value="1">Loc 2</option>
-                                        <option value="1">Loc 3</option>
-                                        <option value="1">Loc 4</option>
+                                        {locations?.map((item, index) => (
+                                            <option value={item} key={index}>
+                                                {item}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div>
@@ -82,6 +119,13 @@ export default function Property({
                             </form>
                         </div>
                         <div className="col-span-2">
+                            <div className="w-[90%] mx-auto mb-4">
+                                <h4>
+                                    Results for category{" "}
+                                    <strong>{category}</strong>, location{" "}
+                                    <strong>{location}</strong>
+                                </h4>
+                            </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2  gap-5 w-[90%] mx-auto">
                                 {properties.map((apartment, index) => (
                                     <PropertyCard

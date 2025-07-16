@@ -23,30 +23,29 @@ use App\Http\Controllers\PropertyImageController;
 
 /************************************ Admin routes *********************************/
 Route::middleware('auth')->group(function () {
-    
+
  Route::prefix('admin/dashboard')->group(function (){
 
-        Route::get('/',function (){   
+        Route::get('/',function (){
             return Inertia::render('Admin/Admin');
         });
-        Route::get('properties',function (){   
+        Route::get('properties',function (){
             return Inertia::render('Admin/Properties');
         });
-        Route::get('notification',function (){   
+        Route::get('notification',function (){
             return Inertia::render('Admin/Notification');
         });
-        
+
 
         Route::get('/property',[PropertyController::class,'index']);
         Route::get('/property/{id}',[PropertyController::class,'show']);
         Route::post('/property',[PropertyController::class,'store']);
-        Route::get('/transactions',[PropertyController::class,'index']);
         Route::post('/property/update/',[PropertyController::class,'update']);
         Route::post('/property/publish/{id}',[PropertyController::class,'publish']);
         // Route::get('/property-notifications', [PropertyController::class, 'notifications']);
 
-        
-        
+
+
         // Route::get('/notification',[NoticeController::class,'index']);
         Route::post('/property-image/delete',[PropertyImageController::class,'delete']);
 
@@ -61,12 +60,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/items',[ItemController::class,'index']);
         Route::patch('/items',[ItemController::class,'update']);
         Route::get('/items/{id}',[ItemController::class,'show']);
-        
-        Route::get('/dash/data', [AdminController::class, 'dashData']);
+
 
         Route::get('/institution',[InstitutionController::class,'index']);
         Route::post('/institution',[InstitutionController::class,'store']);
-        
+
     });
 });
 
@@ -88,6 +86,8 @@ Route::get('/property', [PropertyController::class, 'indexProperty']);
 Route::post('/property-enquire', [PropertyController::class, 'enquire']);
 Route::get('/property-all', [PropertyController::class, 'index']);
 Route::get('/property/{id}', [PropertyController::class, 'indexShow']);
+Route::get('/get-property-locations', [PropertyController::class, 'getPropertyLocations']);
+
 
 
 

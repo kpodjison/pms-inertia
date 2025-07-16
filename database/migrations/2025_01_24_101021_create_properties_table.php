@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('code');
             $table->string('description');
-            $table->string('type');
-            $table->string('price');
+            $table->enum('type', ['house', 'apartment']);
+            $table->decimal('price', 10, 2);
             $table->string('category');
             $table->string('size');
             $table->string('bedroom');
             $table->string('bathroom');
-            $table->string('furnishing');
+            $table->enum('furnishing', ['full', 'semi']);
             $table->string('yearOfCons');
             $table->string('street');
             $table->string('region');

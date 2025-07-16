@@ -186,3 +186,7 @@ export interface INotification{
 }
 
 
+export interface IPropertySearchFormData {
+  category: string;
+  location: string;
+}

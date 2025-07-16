@@ -6,6 +6,7 @@ use App\Models\Property;
 use App\Models\PropertyImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -28,8 +29,65 @@ class PropertyController extends Controller
             'bedroom'     => 'required|integer|min:0',
             'bathroom'    => 'required|integer|min:0',
             'furnishing'  => 'required|string|max:100',
-            'yearOfCons'  => 'required|integer|min:2000|max:' . date('Y'),
+            'yearOfCons'  => 'required|integer|min:2015|max:' . date('Y'),
             'images.*'    => 'required|file|image',
+        ], [
+            'title.required'       => 'Please provide a property title.',
+            'title.string'         => 'The title must be a valid text.',
+            'title.max'            => 'The title can be up to 255 characters.',
+
+            'description.required' => 'Please include a property description.',
+            'description.string'   => 'The description must be valid text.',
+            'description.max'      => 'The description can be up to 255 characters.',
+
+            'price.required'       => 'Please enter a price for the property.',
+            'price.numeric'        => 'The price must be a valid number.',
+            'price.min'            => 'The price must be zero or higher.',
+
+            'type.required'        => 'Select the property type (e.g., apartment, house).',
+            'type.string'          => 'The property type must be text.',
+            'type.max'             => 'The property type can be up to 50 characters.',
+
+            'street.required'      => 'Please provide the street address.',
+            'street.string'        => 'The street must be valid text.',
+            'street.max'           => 'The street address can be up to 255 characters.',
+
+            'region.required'      => 'Please select a region.',
+            'region.string'        => 'The region must be valid text.',
+            'region.max'           => 'The region can be up to 100 characters.',
+
+            'city.required'        => 'Please enter the city.',
+            'city.string'          => 'The city must be valid text.',
+            'city.max'             => 'The city name can be up to 100 characters.',
+
+            'category.required'    => 'Please select a property category (e.g., rent, sale).',
+            'category.string'      => 'The category must be valid text.',
+            'category.max'         => 'The category can be up to 100 characters.',
+
+            'size.required'        => 'Please provide the size of the property in square units.',
+            'size.numeric'         => 'The size must be a valid number.',
+            'size.min'             => 'The size must be at least 0.',
+
+            'bedroom.required'     => 'Enter the number of bedrooms.',
+            'bedroom.integer'      => 'The bedroom count must be a whole number.',
+            'bedroom.min'          => 'Bedrooms cannot be less than 0.',
+
+            'bathroom.required'    => 'Enter the number of bathrooms.',
+            'bathroom.integer'     => 'The bathroom count must be a whole number.',
+            'bathroom.min'         => 'Bathrooms cannot be less than 0.',
+
+            'furnishing.required'  => 'Specify the furnishing status (e.g., semi, full).',
+            'furnishing.string'    => 'The furnishing must be valid text.',
+            'furnishing.max'       => 'The furnishing status can be up to 100 characters.',
+
+            'yearOfCons.required'  => 'Enter the year the property was constructed.',
+            'yearOfCons.integer'   => 'The construction year must be a valid year.',
+            'yearOfCons.min'       => 'The construction year must be 2000 or later.',
+            'yearOfCons.max'       => 'The construction year cannot be in the future.',
+
+            'images.*.required'    => 'Each property image is required.',
+            'images.*.file'        => 'Each uploaded file must be a valid file.',
+            'images.*.image'       => 'Only image files are allowed for property photos.',
         ]);
 
         try {
@@ -80,6 +138,12 @@ class PropertyController extends Controller
         return response()->json(['data' => $properties]);
     }
 
+    public function getPropertyLocations()
+    {
+        $uniqueLocations = Property::distinct()->pluck('city');
+        return response()->json(['data' => $uniqueLocations]);
+    }
+
     public function notifications()
     {
         $properties = Property::with(['images', 'notices'])->orderBy('id', 'desc')->get();
@@ -88,7 +152,20 @@ class PropertyController extends Controller
 
     public function indexProperty()
     {
-        $properties = Property::with('images')->where('is_visible', '=', '1')->orderBy('id', 'desc')->get();
+        $category = request('category');
+        $location = request('location');
+        DB::enableQueryLog();
+        if ($category && $location) {
+            $properties = Property::with('images')->where('is_visible', '=', '1')
+                ->where('category', $category)
+                ->where('city', $location)
+                ->orderBy('id', 'desc')->get();
+                Log::info($properties);
+                dd(DB::getQueryLog());
+        } else {
+            $properties = Property::with('images')->where('is_visible', '=', '1')->orderBy('id', 'desc')->get();
+        }
+
         return Inertia::render('Property', [
             'properties' => $properties,
         ]);

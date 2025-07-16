@@ -91,11 +91,13 @@ export default function RootLayout({
                                     />
 
                                     <div>
-                                        <h6>John Doe</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
+                                        <h6 className="font-semibold">
+                                            Azariah Nii
+                                        </h6>
+                                        <p className="text-muted-foreground">
+                                            The entire process was smooth and
+                                            stress-free. I found my dream home
+                                            in just a few visits!
                                         </p>
                                     </div>
                                 </div>
@@ -108,11 +110,13 @@ export default function RootLayout({
                                     />
 
                                     <div>
-                                        <h6>Janet Doe</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
+                                        <h6 className="font-semibold">
+                                            Price Commeh
+                                        </h6>
+                                        <p className="text-muted-foreground">
+                                            Excellent service from start to
+                                            finish. The realtor was professional
+                                            and very responsive.
                                         </p>
                                     </div>
                                 </div>
@@ -125,11 +129,13 @@ export default function RootLayout({
                                     />
 
                                     <div>
-                                        <h6>Mike Doe</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
+                                        <h6 className="font-semibold">
+                                            Yaw Manu
+                                        </h6>
+                                        <p className="text-muted-foreground">
+                                            They handled all the paperwork and
+                                            made buying a home feel easy and
+                                            safe.
                                         </p>
                                     </div>
                                 </div>
@@ -142,11 +148,13 @@ export default function RootLayout({
                                     />
 
                                     <div>
-                                        <h6>John Doe</h6>
-                                        <p>
-                                            titsome text her some text her some
-                                            text hersome text hersome text
-                                            hersome text here
+                                        <h6 className="font-semibold">
+                                            Afia A.
+                                        </h6>
+                                        <p className="text-muted-foreground">
+                                            rom viewing to getting the keys,
+                                            everything was fast and efficient.
+                                            Highly recommended!
                                         </p>
                                     </div>
                                 </div>
