@@ -35,6 +35,8 @@ import { Head, usePage } from "@inertiajs/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { LineChartCard } from "@/Components/LineChartCard";
+import { PropertyBarchart } from "@/Components/PropertyBarchart";
+import { RevenuePieChart } from "@/Components/RevenuePieChart";
 
 export default function Dashboard() {
     const [dashData, setDashData] = useState({});
@@ -62,10 +64,10 @@ export default function Dashboard() {
                     </span>
                 </div>
                 <div className="dash-data">
-                    <Card className="flex flex-col">
+                    {/* <Card className="flex flex-col">
                         <CardHeader className="items-center pb-0">
                             <CardTitle>Property Chart</CardTitle>
-                            {/* <CardDescription>January - June 2024</CardDescription> */}
+                      
                         </CardHeader>
                         <CardContent className="flex-1 pb-0">
                             <ChartContainer
@@ -131,8 +133,9 @@ export default function Dashboard() {
                                 Showing total properties
                             </div>
                         </CardFooter>
-                    </Card>
-                    <LineChartCard />
+                    </Card> */}
+                    <PropertyBarchart />
+                   <RevenuePieChart />
                 </div>
 
                 <div className="my-10">
